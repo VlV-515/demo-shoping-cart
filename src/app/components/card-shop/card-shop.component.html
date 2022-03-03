@@ -8,5 +8,5 @@
   <h5>
     <ng-content select="[stock]"></ng-content>
   </h5>
-  <button>Add to cart</button>
+  <button (click)="btnAddToCart.emit(null)">Add to cart</button>
 </div>

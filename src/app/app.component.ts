@@ -1,3 +1,4 @@
+import { ItemShopInterface } from './interfaces/item-shop.interface';
 import { getTestBed } from '@angular/core/testing';
 import { ShopService } from './services/shop.service';
 import { Component } from '@angular/core';
@@ -9,6 +10,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor(public shopSvc: ShopService) {
-    this.shopSvc.getAllItems().subscribe(console.log);
+    this.shopSvc.getAllItems().subscribe();
+  }
+  onAddCart(item: ItemShopInterface): void {
+    this.shopSvc.addItemToCart(item);
   }
 }

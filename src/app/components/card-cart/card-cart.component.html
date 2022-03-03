@@ -1,10 +1,18 @@
 <div class="container">
-  <h4>Tittle or name of toy.</h4>
-  <h5>$12.00</h5>
-  <p>2 units</p>
-  <p>Subtotal: $123</p>
+  <h4>
+    <ng-content select="[tittlee]"></ng-content>
+  </h4>
+  <h5>
+    <ng-content select="[price]"></ng-content>
+  </h5>
+  <p>
+    <ng-content select="[units]"></ng-content>
+  </p>
+  <p>
+    <ng-content select="[subtotal]"></ng-content>
+  </p>
   <div class="btn-group">
-    <button>+</button>
-    <button>-</button>
+    <button (click)="btnAdd.emit()">+</button>
+    <button (click)="btnRest.emit()">-</button>
   </div>
 </div>

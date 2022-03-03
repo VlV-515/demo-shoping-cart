@@ -2,18 +2,25 @@
   <div class="container-shop">
     <app-card-shop
       class="item shop-item"
-      *ngFor="let item of shopSvc.getDataItems$() | async"
+      *ngFor="let itemShop of shopSvc.getDataItems$() | async"
+      (btnAddToCart)="onAddCart(itemShop)"
     >
-      <div tittle>{{ item.tittle }}</div>
-      <div price>{{ item.price | currency }}</div>
-      <div stock>{{ item.stock }} units</div>
+      <div tittle>{{ itemShop.tittle }}</div>
+      <div price>{{ itemShop.price | currency }}</div>
+      <div stock>{{ itemShop.stock }} units</div>
     </app-card-shop>
   </div>
   <div class="container-cart">
     <div class="cart-card">
-      <app-card-cart class="item cart-item"></app-card-cart>
-      <app-card-cart class="item cart-item"></app-card-cart>
-      <app-card-cart class="item cart-item"></app-card-cart>
+      <app-card-cart
+        class="item cart-item"
+        *ngFor="let itemCart of shopSvc.getCartItems$() | async"
+      >
+        <div tittlee>{{ itemCart.tittle }}</div>
+        <div price>{{ itemCart.price | currency }}</div>
+        <div units>{{ itemCart.units }}</div>
+        <div subtotal>{{ itemCart.subtotal | currency }}</div>
+      </app-card-cart>
     </div>
     <h1 class="cart-text">Total: $1,600</h1>
     <div class="cart-btn-group">
