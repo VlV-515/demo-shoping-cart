@@ -1,12 +1,13 @@
 <div class="container">
   <div class="container-shop">
-    <app-card-shop class="item shop-item"></app-card-shop>
-    <app-card-shop class="item shop-item"></app-card-shop>
-    <app-card-shop class="item shop-item"></app-card-shop>
-    <app-card-shop class="item shop-item"></app-card-shop>
-    <app-card-shop class="item shop-item"></app-card-shop>
-    <app-card-shop class="item shop-item"></app-card-shop>
-    <app-card-shop class="item shop-item"></app-card-shop>
+    <app-card-shop
+      class="item shop-item"
+      *ngFor="let item of shopSvc.getDataItems$() | async"
+    >
+      <div tittle>{{ item.tittle }}</div>
+      <div price>{{ item.price | currency }}</div>
+      <div stock>{{ item.stock }} units</div>
+    </app-card-shop>
   </div>
   <div class="container-cart">
     <div class="cart-card">

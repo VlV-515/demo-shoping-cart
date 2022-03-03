@@ -1,6 +1,12 @@
 <div class="container">
-  <h3>Tittle or name of toy.</h3>
-  <h4>$12.00</h4>
-  <h5>50 units</h5>
+  <h3>
+    <ng-content select="[tittle]"></ng-content>
+  </h3>
+  <h4>
+    <ng-content select="[price]"></ng-content>
+  </h4>
+  <h5>
+    <ng-content select="[stock]"></ng-content>
+  </h5>
   <button>Add to cart</button>
 </div>
