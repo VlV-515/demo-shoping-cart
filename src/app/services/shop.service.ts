@@ -17,6 +17,7 @@ export class ShopService {
   //Subjects
   dataItems$ = new BehaviorSubject<ItemShopInterface[]>([]);
   cartItems$ = new BehaviorSubject<ItemCartInterface[]>([]);
+  cartTotal$ = new BehaviorSubject<number>(0);
   //Getters
   getCartItems$(): Observable<ItemCartInterface[]> {
     return this.cartItems$.asObservable();
@@ -24,6 +25,10 @@ export class ShopService {
 
   getDataItems$(): Observable<ItemShopInterface[]> {
     return this.dataItems$.asObservable();
+  }
+
+  getCartTotal$(): Observable<number> {
+    return this.cartTotal$.asObservable();
   }
 
   getAllItems(): Observable<ItemShopInterface[]> {
@@ -37,6 +42,7 @@ export class ShopService {
     //Verificamos si es un numero, si lo es, automaticamente es caso de sumar
     if (typeof data == 'number') {
       this.addExistItem(data);
+      this.refreshCartTotal();
       return this.cartItems$.next(this.arrCartItems);
     }
     //Si lo encontramos en el array, le añadimos y seteamos a true
@@ -50,6 +56,7 @@ export class ShopService {
     //Si no se cumplio lo anterior, lo añade como nuevo.
     if (!find) this.addNewItem(item as ItemShopInterface);
     //Terminamos seteando el Observable
+    this.refreshCartTotal();
     return this.cartItems$.next(this.arrCartItems);
   }
 
@@ -68,5 +75,13 @@ export class ShopService {
         e.subtotal = e.units * e.price;
       }
     });
+  }
+
+  refreshCartTotal(): void {
+    let total = this.arrCartItems.reduce(
+      (acc, el) => (acc += el.units * el.price),
+      0
+    );
+    this.cartTotal$.next(total);
   }
 }
