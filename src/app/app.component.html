@@ -28,8 +28,8 @@
       Total: {{ shopSvc.getCartTotal$() | async | currency }}
     </h1>
     <div class="cart-btn-group">
-      <button class="cart-btn">Finish</button>
-      <button class="cart-btn"(click)="onReset()">Reset</button>
+      <button class="cart-btn" (click)="onFinish()">Finish</button>
+      <button class="cart-btn" (click)="onReset()">Reset</button>
     </div>
   </div>
 </div>

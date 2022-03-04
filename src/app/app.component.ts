@@ -23,4 +23,7 @@ export class AppComponent {
   onReset(): void {
     this.shopSvc.cleanAll();
   }
+  onFinish(): void {
+    this.shopSvc.finishStore();
+  }
 }

@@ -37,6 +37,11 @@ export class ShopService {
     );
   }
 
+  finishStore(): void {
+    window.alert('Thanks for your purchase');
+    this.cleanAll();
+  }
+
   addItemToCart(item?: ItemShopInterface, id?: number): void {
     const data = item || id;
     //Verificamos si es un numero, si lo es, automaticamente es caso de sumar
