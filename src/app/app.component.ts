@@ -17,4 +17,7 @@ export class AppComponent {
   sumToCart(id: number): void {
     this.shopSvc.addItemToCart(undefined, id);
   }
+  resToCart(id: number): void {
+    this.shopSvc.removeItemToCart(id);
+  }
 }

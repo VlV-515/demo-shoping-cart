@@ -59,6 +59,10 @@ export class ShopService {
     this.refreshCartTotal();
     return this.cartItems$.next(this.arrCartItems);
   }
+  removeItemToCart(id: number): void {
+    this.removeExistItem(id);
+    this.refreshCartTotal();
+  }
 
   addNewItem(item: ItemShopInterface): void {
     this.arrCartItems.push({
@@ -76,12 +80,23 @@ export class ShopService {
       }
     });
   }
+  removeExistItem(id: number) {
+    this.arrCartItems.find((e) => {
+      if (e.id == id) {
+        e.units -= 1;
+        e.subtotal = e.units * e.price;
+      }
+    });
+  }
 
+  checkUnits(): void {
+    this.arrCartItems.map((e, i) => {
+      if (e.units == 0) this.arrCartItems.splice(i, 1);
+    });
+  }
   refreshCartTotal(): void {
-    let total = this.arrCartItems.reduce(
-      (acc, el) => (acc += el.units * el.price),
-      0
-    );
+    let total = this.arrCartItems.reduce((acc, el) => (acc += el.subtotal), 0);
     this.cartTotal$.next(total);
+    this.checkUnits();
   }
 }
