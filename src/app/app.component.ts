@@ -20,4 +20,7 @@ export class AppComponent {
   resToCart(id: number): void {
     this.shopSvc.removeItemToCart(id);
   }
+  onReset(): void {
+    this.shopSvc.cleanAll();
+  }
 }

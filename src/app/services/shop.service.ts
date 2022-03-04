@@ -63,6 +63,11 @@ export class ShopService {
     this.removeExistItem(id);
     this.refreshCartTotal();
   }
+  cleanAll(): void {
+    this.arrCartItems.length = 0;
+    this.cartItems$.next([]);
+    this.cartTotal$.next(0);
+  }
 
   addNewItem(item: ItemShopInterface): void {
     this.arrCartItems.push({
