@@ -15,6 +15,7 @@
       <app-card-cart
         class="item cart-item"
         *ngFor="let itemCart of shopSvc.getCartItems$() | async"
+        (click)="sumToCart(itemCart.id)"
       >
         <div tittlee>{{ itemCart.tittle }}</div>
         <div price>{{ itemCart.price | currency }}</div>

@@ -1,5 +1,4 @@
 import { ItemShopInterface } from './interfaces/item-shop.interface';
-import { getTestBed } from '@angular/core/testing';
 import { ShopService } from './services/shop.service';
 import { Component } from '@angular/core';
 
@@ -13,6 +12,9 @@ export class AppComponent {
     this.shopSvc.getAllItems().subscribe();
   }
   onAddCart(item: ItemShopInterface): void {
-    this.shopSvc.addItemToCart(item);
+    this.shopSvc.addItemToCart(item, undefined);
+  }
+  sumToCart(id: number): void {
+    this.shopSvc.addItemToCart(undefined, id);
   }
 }
